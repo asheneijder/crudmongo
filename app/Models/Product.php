@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use MongoDB\Laravel\Eloquent\Model; // IMPORT THIS
+use MongoDB\Laravel\Eloquent\Model;
 
 class Product extends Model
 {
@@ -10,6 +10,12 @@ class Product extends Model
     protected $collection = 'products';
 
     protected $fillable = [
-        'name', 'detail'
+        'name', 'detail', 'category_id' // Added category_id
     ];
+
+    // Define the relationship: A Product belongs to a Category
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
